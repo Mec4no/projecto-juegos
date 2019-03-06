@@ -111,7 +111,7 @@ MonoBehaviour:
   m_MinSize: {x: 907, y: 321}
   m_MaxSize: {x: 22002, y: 10000}
   vertical: 0
-  controlID: 6199
+  controlID: 514
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 321}
   m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
-  controlID: 6231
+  controlID: 442
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -518,9 +518,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 78080000
-    m_LastClickedID: 0
-    m_ExpandedIDs: 96fbffff00000000
+    m_SelectedIDs: 862c0000
+    m_LastClickedID: 11398
+    m_ExpandedIDs: 96fbffff00000000f82a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -582,18 +582,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 78
   m_LastFolders:
-  - Assets/Scripts
+  - Assets
   m_LastFoldersGridSize: 78
   m_LastProjectPath: C:\Users\moyha\Documents\projectounity\ProyectoUVG
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d4290000
-    m_LastClickedID: 10708
+    m_SelectedIDs: 86290000
+    m_LastClickedID: 10630
     m_ExpandedIDs: 000000008629000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -674,7 +674,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 768}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 78
   m_DirectoriesAreaWidth: 110
 --- !u!114 &18
