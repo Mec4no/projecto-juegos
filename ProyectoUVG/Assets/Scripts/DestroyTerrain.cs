@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyTerrain : MonoBehaviour
 {
 
-    private Rigidbody2D myRigidbody;
+    public float health;
 
     // Use this for initialization
     void Start()
@@ -18,11 +18,14 @@ public class DestroyTerrain : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void TakeDamage(float damage)
     {
-        if (other.tag == "Ground")
+
+        health -= damage;
+        if (health <= 0f)
         {
-            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
+
     }
 }
