@@ -21,17 +21,6 @@ public class HurtPlayer : MonoBehaviour {
         if (other.name == "Jax")
         {
             HealthManager.HurtPlayer(damageToGive);
-
-            var player = other.GetComponent<PlayerController>();
-            player.knockbackCount = player.knockbackLenght;
-
-            if (other.transform.position.x < transform.position.x)
-            {
-                player.knockFromRight = true;
-            }
-            else {
-                player.knockFromRight = false;
-            }
         }
     }
 }

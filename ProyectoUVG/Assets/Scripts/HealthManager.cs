@@ -29,10 +29,7 @@ public class HealthManager : MonoBehaviour {
 
         text.text = "Health: "+playerHealth;
 
-        if (player.godMode) {
-            Debug.Log("Player invincible.");
-            playerHealth = 100000;
-        }
+
 	}
 
     public static void HurtPlayer(int damageToGive) {
