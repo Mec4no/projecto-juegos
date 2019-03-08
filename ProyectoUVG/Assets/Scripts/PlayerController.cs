@@ -81,9 +81,8 @@ public class PlayerController : MonoBehaviour {
 
         if (dirtStash > 0 && Input.GetKey(KeyCode.R)) {
             if (Input.GetMouseButtonDown(1)) {
-                RaycastHit2D hit;
-                hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0f);
-                Instantiate(objecto, hit.transform);
+                Instantiate(objecto, new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
+                dirtStash -= 1;
             }
         }
 
