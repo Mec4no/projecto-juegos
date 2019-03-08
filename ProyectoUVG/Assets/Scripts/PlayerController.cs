@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
 
     public float damage;
 
-    private int dirtStash;
+    public static int dirtStash;
 
     public GameObject objecto;
 
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (dirtStash > 0 && Input.GetKey(KeyCode.R)) {
-            if (Input.GetMouseButtonDown(1)) {
+            if (Input.GetMouseButtonDown(0)) {
                 Instantiate(objecto, new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
                 dirtStash -= 1;
             }
