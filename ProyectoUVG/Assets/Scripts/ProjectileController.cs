@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour {
 
-    public float projectileSpeed;
+    public float projectileSpeedX;
+    public float projectileSpeedY;
     private Rigidbody2D myRigidbody;
     private PlayerController player;
-    public GameObject enemyDeathEffect;
     public float rotationSpeed;
     public int damageToGive;
     public float lifeTime;
@@ -18,16 +18,17 @@ public class ProjectileController : MonoBehaviour {
         player = FindObjectOfType<PlayerController>();
         if (player.transform.localScale.x < 0f)
         {
-            projectileSpeed = -projectileSpeed;
+            projectileSpeedX = -projectileSpeedX;
             rotationSpeed = -rotationSpeed;
         }
+        myRigidbody.velocity = new Vector2(projectileSpeedX, projectileSpeedY);
+        myRigidbody.angularVelocity = rotationSpeed;
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        myRigidbody.velocity = new Vector2(projectileSpeed, myRigidbody.velocity.y);
-        myRigidbody.angularVelocity = rotationSpeed;
+
 
 	}
 
@@ -36,15 +37,11 @@ public class ProjectileController : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-
-        if (other.tag == "Enemy")
+        if (other.tag == "Ground")
         {
-            //Destroy(other.gameObject);
-            other.GetComponent<EnemyHealthManager>().giveDamage(damageToGive);
-        }
-        else if (other.tag == "Ground")
-        {
+            Destroy(other.gameObject);
             Destroy(gameObject);
         }
+
     }
 }

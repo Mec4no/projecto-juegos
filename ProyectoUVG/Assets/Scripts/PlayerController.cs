@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float moveSpeed;
+    public float remindSpeed;
     public float jumpSpeed;
     private Rigidbody2D myRigidbody;
 
@@ -21,24 +22,37 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject objecto;
 
+    public GameObject projectil;
+    public Transform firePoint;
+
+    public float shotDelay;
+    private float shotDelayCounter;
+
     // Use this for initialization
     void Start() {
+        remindSpeed = moveSpeed;
         myRigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate() {
 
+        Debug.Log(myRigidbody.velocity);
+
         playerTouchingGround = Physics2D.OverlapCircle(GroundCheckPoint.position, GroundCheckRadius, GroundLayer);
 
-        if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+        if (Input.GetAxisRaw("Horizontal") > 0.5f)
         {
             myRigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, myRigidbody.velocity.y);
-            transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal"), 1f, 1f);
+            transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal") - 0.567924f, transform.localScale.y, transform.localScale.z);
+        }
+        else if (Input.GetAxisRaw("Horizontal") < -0.5f) {
+            myRigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, myRigidbody.velocity.y);
+            transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal") + 0.567924f, transform.localScale.y, transform.localScale.z);
         }
         else
         {
-            myRigidbody.velocity = new Vector2(0f, myRigidbody.velocity.y);
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y);
         }
 
         if (Input.GetAxisRaw("Jump") > 0.5f && playerTouchingGround == true)
@@ -56,7 +70,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            moveSpeed = 5f;
+            moveSpeed = remindSpeed;
         }
 
         if (Input.GetKey(KeyCode.E))
@@ -83,6 +97,22 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetMouseButtonDown(0)) {
                 Instantiate(objecto, new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
                 dirtStash -= 1;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Instantiate(projectil, firePoint.position, firePoint.rotation);
+            shotDelayCounter = shotDelay;
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            shotDelayCounter -= Time.deltaTime;
+
+            if (shotDelayCounter <= 0)
+            {
+                shotDelayCounter = shotDelay;
+                Instantiate(projectil, firePoint.position, firePoint.rotation);
             }
         }
 
