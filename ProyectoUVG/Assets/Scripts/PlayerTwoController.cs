@@ -18,7 +18,7 @@ public class PlayerTwoController : MonoBehaviour
 
     public float damage;
 
-    public static int dirtStash;
+    public static int dirtStash = 4;
 
     public GameObject objecto;
 
@@ -27,6 +27,9 @@ public class PlayerTwoController : MonoBehaviour
 
     public float shotDelay;
     private float shotDelayCounter;
+
+    private float buildDelayCounter;
+    private float buildDelay = 1;
 
     // Use this for initialization
     void Start()
@@ -100,11 +103,36 @@ public class PlayerTwoController : MonoBehaviour
 
         if (dirtStash > 0 && Input.GetKey(KeyCode.R))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetAxisRaw("Horizontal_p2") > 0.5f)
             {
-                Instantiate(objecto, new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
+                Instantiate(objecto, new Vector3(GameObject.FindGameObjectWithTag("Player 2").transform.position.x + 1f, GameObject.FindGameObjectWithTag("Player").transform.position.y, 0f), Quaternion.identity);
+                
+
+
+            }
+            else if (Input.GetAxisRaw("Horizontal_p2") < -0.5f)
+            {
+                Instantiate(objecto, new Vector3(GameObject.FindGameObjectWithTag("Player 2").transform.position.x - 1f, GameObject.FindGameObjectWithTag("Player").transform.position.y, 0f), Quaternion.identity);
+            }
+
+            else if (Input.GetAxisRaw("Vertical_p2") > 0.5f)
+            {
+                Instantiate(objecto, new Vector3(GameObject.FindGameObjectWithTag("Player 2").transform.position.x, GameObject.FindGameObjectWithTag("Player").transform.position.y + 1f, 0f), Quaternion.identity);
                 dirtStash -= 1;
             }
+
+            else if (Input.GetAxisRaw("Vertical_p2") < -0.5f)
+            {
+                Instantiate(objecto, new Vector3(GameObject.FindGameObjectWithTag("Player 2").transform.position.x, GameObject.FindGameObjectWithTag("Player").transform.position.y - 1f, 0f), Quaternion.identity);
+                dirtStash -= 1;
+            }
+
+            //buildDelayCounter
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //  Instantiate(objecto, new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
+            //dirtStash -= 1;
+            //}
         }
 
         if (Input.GetKeyDown(KeyCode.B))

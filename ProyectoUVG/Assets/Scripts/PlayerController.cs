@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public float damage;
 
-    public static int dirtStash;
+    public static int dirtStash = 4;
 
     public GameObject objecto;
 
@@ -95,10 +95,34 @@ public class PlayerController : MonoBehaviour
         }
 
         if (dirtStash > 0 && Input.GetKey(KeyCode.R)) {
-            if (Input.GetMouseButtonDown(0)) {
-                Instantiate(objecto, new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
+            if (Input.GetAxisRaw("Horizontal_p1") > 0.5f)
+            {
+                Instantiate(objecto, new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x + 1f, GameObject.FindGameObjectWithTag("Player").transform.position.y, 0f), Quaternion.identity);
+
+                dirtStash -= 1;
+
+            }
+            else if (Input.GetAxisRaw("Horizontal_p1") < -0.5f)
+            {
+                Instantiate(objecto, new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x - 1f, GameObject.FindGameObjectWithTag("Player").transform.position.y, 0f), Quaternion.identity);
                 dirtStash -= 1;
             }
+
+            else if (Input.GetAxisRaw("Vertical_p1") > 0.5f)
+            {
+                Instantiate(objecto, new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x, GameObject.FindGameObjectWithTag("Player").transform.position.y + 1f, 0f), Quaternion.identity);
+                dirtStash -= 1;
+            }
+
+            else if (Input.GetAxisRaw("Vertical_p1") < -0.5f)
+            {
+                Instantiate(objecto, new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x, GameObject.FindGameObjectWithTag("Player").transform.position.y - 1f, 0f), Quaternion.identity);
+                dirtStash -= 1;
+            }
+            //if (Input.GetMouseButtonDown(0)) {
+            //Instantiate(objecto, new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Quaternion.identity);
+            //  dirtStash -= 1;
+            //}
         }
 
         if (Input.GetKeyDown(KeyCode.Comma))
