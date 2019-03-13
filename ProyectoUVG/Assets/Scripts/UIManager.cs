@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject player_one, player_two;
     private string text;
     public GameObject pauseUI;
     public static bool isPaused;
@@ -14,6 +15,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player_one = GameObject.FindGameObjectWithTag("Player");
+        player_two = GameObject.FindGameObjectWithTag("Player 2");
         isPaused = false;
         pauseUI.SetActive(false);
         min = 0;
@@ -35,6 +38,15 @@ public class UIManager : MonoBehaviour
             min = (int)(Time.timeSinceLevelLoad / 60);
             time = min + ":" + sec;
             GameObject.Find("Timer").GetComponent<Text>().text = "Time: " + time;
+        }
+        if (player_one.transform.position.y < -7f)
+        {
+            Debug.Log("player 2 wins");
+            
+        }
+        else if (player_two.transform.position.y < -7f)
+        {
+            Debug.Log("player 1 wins");
         }
     }
     public void control()
