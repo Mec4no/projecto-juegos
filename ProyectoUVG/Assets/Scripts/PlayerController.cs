@@ -101,12 +101,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Slash))
+        if (Input.GetKeyDown(KeyCode.Comma))
         {
             Instantiate(projectil, firePoint.position, firePoint.rotation);
             shotDelayCounter = shotDelay;
         }
-        if (Input.GetKey(KeyCode.Slash))
+        if (Input.GetKey(KeyCode.Comma))
         {
             shotDelayCounter -= Time.deltaTime;
 
