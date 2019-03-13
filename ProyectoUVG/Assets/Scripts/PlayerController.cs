@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public float moveSpeed;
     public float remindSpeed;
@@ -41,23 +42,23 @@ public class PlayerController : MonoBehaviour {
 
         playerTouchingGround = Physics2D.OverlapCircle(GroundCheckPoint.position, GroundCheckRadius, GroundLayer);
 
-        if (Input.GetAxisRaw("Horizontal") > 0.5f)
+        if (Input.GetAxisRaw("Horizontal_p1") > 0.5f)
         {
-            myRigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, myRigidbody.velocity.y);
-            transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal") - 0.567924f, transform.localScale.y, transform.localScale.z);
+            myRigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal_p1") * moveSpeed, myRigidbody.velocity.y);
+            transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal_p1") - 0.567924f, transform.localScale.y, transform.localScale.z);
         }
-        else if (Input.GetAxisRaw("Horizontal") < -0.5f) {
-            myRigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, myRigidbody.velocity.y);
-            transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal") + 0.567924f, transform.localScale.y, transform.localScale.z);
+        else if (Input.GetAxisRaw("Horizontal_p1") < -0.5f) {
+            myRigidbody.velocity = new Vector2(Input.GetAxisRaw("Horizontal_p1") * moveSpeed, myRigidbody.velocity.y);
+            transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal_p1") + 0.567924f, transform.localScale.y, transform.localScale.z);
         }
         else
         {
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y);
         }
 
-        if (Input.GetAxisRaw("Jump") > 0.5f && playerTouchingGround == true)
+        if (Input.GetAxisRaw("Jump_p1") > 0.5f && playerTouchingGround == true)
         {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, Input.GetAxisRaw("Jump") * jumpSpeed);
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, Input.GetAxisRaw("Jump_p1") * jumpSpeed);
 
         }
         if (!playerTouchingGround && moveSpeed < 30f)
@@ -100,12 +101,12 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Slash))
         {
             Instantiate(projectil, firePoint.position, firePoint.rotation);
             shotDelayCounter = shotDelay;
         }
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Slash))
         {
             shotDelayCounter -= Time.deltaTime;
 
